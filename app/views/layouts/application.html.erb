@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<%# Javascript SDK to use facebook connect%>
+		<%=fb_connect_async_js %>
+		<% if current_facebook_user != nil %>
+			<%=fb_logout_link("Logout", request.url) %><br/>
+		<% else %>
+			<%=fb_login_and_redirect( url_for(:controller=>"home"),
+									:perms=>"user_likes,user_birthday")%>
+		<% end%>
+		
+		<h1>My Killer Facebook App</h1>
+		<%= yield %>
+	</body>
+</html>
